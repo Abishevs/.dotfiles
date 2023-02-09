@@ -1,16 +1,4 @@
-# CLI Pomodoro
-declare -A pomo_options
-pomo_options["work"]="1"
-pomo_options["break"]="10"
 
-pomodoro () {
-  if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
-  val=$1
-  echo $val | lolcat
-  timer ${pomo_options["$val"]}m
-  spd-say "'$val' session done"
-  fi
-}
 DOTFILES="$HOME/.dotfiles"
 dtf () {
   git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
@@ -31,9 +19,25 @@ dtfrestore () {
   dtf config --local status.showUntrackedFiles no
   dtf checkout || echo -e 'Deal with conflicting files, then run (possibly with -f flag if you are OK with overwriting)\ndtf checkout'
 }
-alias wo="pomodoro 'work'"
-alias br="pomodoro 'break'"
+
+# CLI Pomodoro
+declare -A pomo_options
+pomo_options["work"]="15" # time in minutes
+pomo_options["break"]="5"
+
+pomodoro () {
+  if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
+  val=$1
+  echo $val | lolcat
+  timer ${pomo_options["$val"]}m
+  spd-say "'$val' session done"
+  fi
+}
+# Pomodoro aliases 
+alias work="pomodoro 'work'"
+alias break="pomodoro 'break'"
 ## Custom aliases
+alias sourcetmux='tmux source ~/.tmux.conf'
 alias noter='note.sh'
 alias v='nvim'
 alias nsync='git-sync.sh'
