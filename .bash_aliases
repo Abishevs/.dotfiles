@@ -21,9 +21,11 @@ dtfrestore () {
 }
 
 # CLI Pomodoro
+# Requires https://github.com/caarlos0/timer to be installed. spd-say should ship with your distro
+
 declare -A pomo_options
-pomo_options["work"]="15" # time in minutes
-pomo_options["break"]="5"
+pomo_options["work"]="1"
+pomo_options["break"]="10"
 
 pomodoro () {
   if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
@@ -33,9 +35,9 @@ pomodoro () {
   spd-say "'$val' session done"
   fi
 }
-# Pomodoro aliases 
-alias work="pomodoro 'work'"
-alias break="pomodoro 'break'"
+
+alias wo="pomodoro 'work'"
+alias br="pomodoro 'break'"
 ## Custom aliases
 alias sourcetmux='tmux source ~/.tmux.conf'
 alias noter='note.sh'
