@@ -7,7 +7,7 @@ require("catppuccin").setup({
         dark = "mocha",
     },
     transparent_background = true,
-    term_colors = false,
+    term_colors = true,
     dim_inactive = {
         enabled = true,
         shade = "dark",
