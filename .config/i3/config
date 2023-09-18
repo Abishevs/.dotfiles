@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -37,7 +37,7 @@ exec --no-startup-id nm-applet
 
 # Custom exec commands 
 exec --no-startup-id picom --daemon &
-exec --no-startup-id feh --bg-fill ~/Desktop/MidJourny\ images/Aga-astronaut.png
+exec --no-startup-id feh --bg-fill ~/Desktop/MidJourny_images/Aga-astronaut.png
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
