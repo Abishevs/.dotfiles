@@ -15,7 +15,7 @@ dtfnew () {
 }
 
 dtfrestore () {
-  git clone -b base --bare $1 $DOTFILES
+  git clone -b main --bare $1 $DOTFILES
   dtf config --local status.showUntrackedFiles no
   dtf checkout || echo -e 'Deal with conflicting files, then run (possibly with -f flag if you are OK with overwriting)\ndtf checkout'
 }
