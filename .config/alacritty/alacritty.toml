@@ -1,0 +1,16 @@
+# theme settings
+import = ["/home/frap/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+window.opacity = 0.96
+window.decorations = "none"
+window.startup_mode = "Fullscreen"
+window.padding = { x = 10,y = 20 }
+
+# font settings
+font.size = 12
+font.normal.family = "Fira Code"
+ 
+
+
+[shell]
+args = ["--login"]
+program = "/usr/bin/zsh"

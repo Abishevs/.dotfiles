@@ -40,10 +40,12 @@ alias wo="pomodoro 'work'"
 alias br="pomodoro 'break'"
 
 # For running auto reload dev env for go projects
-alias air='/home/frap/go/bin/air'
+alias air='/home/frap/.go/bin/air'
 export PATH=$PATH:/usr/local/go/bin
 alias go='/usr/local/go/bin/go'
 
+## paths
+export PATH=$PATH:/usr/local/bin
 ## Custom aliases
 alias sourcetmux='tmux source ~/.tmux.conf'
 alias noter='note.sh'
@@ -58,3 +60,5 @@ alias remove-all='rm -r'
 # Tmux shortcuts
 alias school='tmux attach -t school'
 alias work='tmux attach -t work'
+alias learn='tmux attach -t  learn-go' 
+alias gym='tmux attach -t gym'

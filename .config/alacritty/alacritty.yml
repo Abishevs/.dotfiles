@@ -1,0 +1,11 @@
+shell:
+  program: /usr/bin/zsh
+  args:
+    - --login
+
+window:
+  opacity: 0.5
+
+import:
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+

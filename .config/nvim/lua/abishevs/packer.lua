@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
     run = function () vim.fn["mkdp#util#install"]() end,
   })
   use('nvim-treesitter/nvim-treesitter', { run = 'TSUpdate'})
+  use('tpope/vim-fugitive')
   use 'theprimeagen/harpoon'
   use 'mbbill/undotree'
   use {
@@ -44,5 +45,17 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use 'terrortylor/nvim-comment'
+  use 'lervag/vimtex'
+  use 'dpelle/vim-LanguageTool'
   use { "catppuccin/nvim", as = "catppuccin" }
+  use({
+	  "epwalsh/obsidian.nvim",
+	  tag = "v2.5.1",  -- recommended, use latest release instead of latest commit
+	  requires = {
+		  -- Required.
+		  "nvim-lua/plenary.nvim",
+
+		  -- see below for full list of optional dependencies 👇
+	  },
+  })
 end)
