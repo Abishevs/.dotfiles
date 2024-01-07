@@ -125,15 +125,17 @@ dtfrestore () {
 # Requires https://github.com/caarlos0/timer to be installed. spd-say should ship with your distro
 
 declare -A pomo_options
-pomo_options["work"]="60"
-pomo_options["break"]="10"
+pomo_options["work"]="25"
+pomo_options["break"]="5"
 
 pomodoro () {
   if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
   val=$1
   echo $val | lolcat
   timer ${pomo_options["$val"]}m
-  spd-say "'$val' session done"
+  # spd-say "'$val' session done"
+  mpv Downloads/running_rerun.wav --end=3
+  clear
   fi
 }
 
@@ -144,7 +146,14 @@ alias br="pomodoro 'break'"
 alias air=$HOME/.go/bin/air
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:$HOME/.local/bin
 alias go='/usr/local/go/bin/go'
+
+export PATH=$PATH:/home/frap/.cargo/bin
+export BROWSER=librewolf
+export EDITOR=nvim
+export TERMINAL=st
+
 
 ## Custom aliases
 alias sourcetmux='tmux source ~/.tmux.conf'
@@ -153,6 +162,16 @@ alias noter='~/personal/noter/note.sh'
 alias vim='nvim'
 alias nsync='git-sync.sh'
 alias py='python3'
+
+function dnote() {
+    local vim_cmd="ObsidianToday"
+    
+    if [ "$#" -gt 0 ]; then
+        vim_cmd="$vim_cmd $*"
+    fi
+
+    vim -c "$vim_cmd"
+}
 
 # so that i dont accdentily remove all files XD
 alias rm='rm -i'
@@ -163,4 +182,3 @@ alias school='tmux attach -t school'
 alias work='tmux attach -t work'
 alias learn='tmux attach -t  learn-go' 
 alias gym='tmux attach -t gym'
-
