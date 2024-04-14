@@ -3,6 +3,6 @@
 ## Installation
 
 ```bash
-curl -sS https://raw.githubusercontent.com/Abishevs/.dotfiles/master/install.sh | bash
+curl -sS https://raw.githubusercontent.com/Abishevs/.dotfiles/arch-laptop/install.sh | bash
 
 ```
