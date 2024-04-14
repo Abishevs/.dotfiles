@@ -1,3 +1,8 @@
-# My dotfiles
-Running i3, st and
-Tmux, neovim
+# My dotfiles managed via stow
+
+## Installation
+
+```bash
+curl -sS https://raw.githubusercontent.com/Abishevs/.dotfiles/master/install.sh | bash
+
+```
