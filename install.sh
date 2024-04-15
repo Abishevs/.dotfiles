@@ -1,41 +1,51 @@
 #!/bin/bash
 
-echo "Enter the dir where you want to keep this repo:"
+echo "Enter the directory where you want to keep this repo (default is $HOME/.dotfiles):"
 read DOTFILES_DIR
-
 if [ -z "$DOTFILES_DIR" ]; then
     DOTFILES_DIR="$HOME/.dotfiles"
     echo "No input entered. Using default directory: $DOTFILES_DIR"
 fi
 
-DOTFILES_REPO="https://github.com/Abishevs/dotfiles.git"
-
-# Ensure the script is run as a regular user and not root
 if [ "$(id -u)" -eq 0 ]; then
-    echo "This script should not be run as root" >&2
+    echo "This script should not be run as root." >&2
     exit 1
 fi
 
-# Check if Stow is installed and install it if not
 if ! command -v stow &> /dev/null; then
-    echo "Stow is not installed. Installing Stow..."
-    sudo pacman -Syu stow --noconfirm
+    echo "GNU Stow is not installed. Installing Stow..."
+    sudo pacman -Syu stow --noconfirm  
 fi
 
-# Clone the dotfiles repository if it's not already there
 if [ ! -d "$DOTFILES_DIR" ]; then
     echo "Cloning dotfiles repository..."
-    git clone --recurse-submodules $DOTFILES_REPO $DOTFILES_DIR
+    git clone --recurse-submodules https://github.com/Abishevs/dotfiles.git "$DOTFILES_DIR"
 else
-    echo "Dotfiles directory already exists."
+    echo "Dotfiles directory already exists. Updating repository..."
+    (cd "$DOTFILES_DIR" && git pull && git submodule update --init --recursive)
 fi
 
-cd $DOTFILES_DIR
+cd "$DOTFILES_DIR"
 
-# Stow all directories (each directory is a package)
+echo "Available branches:"
+git branch -a | grep remotes | grep -v HEAD | grep -v master | sed 's/.*\///'
+echo "Enter the branch you want to use (default is master):"
+read BRANCH
+if [ -z "$BRANCH" ]; then
+    BRANCH="master"
+fi
+echo "Switching to branch $BRANCH..."
+git checkout $BRANCH
+
+./setup-zsh.sh # Setup zsh before stowing
+
+
 for d in */ ; do
-    echo "Stowing $d..."
-    stow -v -R -t ~ $d
+    if [ -d "$d" ]; then
+        echo "Stowing $d..."
+        stow -v -R -t ~ $d
+    fi
 done
 
 echo "Dotfiles are stowed successfully."
+
