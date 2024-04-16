@@ -21,3 +21,5 @@ done
 
 alias vim="nvim"
 alias pact="pact-cli"
+alias ta="tmux a"
+alias bat="acpi"
