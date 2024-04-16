@@ -4,6 +4,10 @@
 # to charge status (🔌 for plugged up, 🔋 for discharging on battery, etc.).
 
 case $BLOCK_BUTTON in
+	1)
+	remaining_time=$(acpi)
+        notify-send "Battery Time" "$remaining_time"
+        ;;
 	3) notify-send "🔋 Battery module" "🔋: discharging
 🛑: not charging
 ♻: stagnant charge
