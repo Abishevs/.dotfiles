@@ -23,4 +23,3 @@ if [ ! -d "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" ]; then
 fi
 
 echo "Zsh setup complete :)"
-

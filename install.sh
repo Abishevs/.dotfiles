@@ -30,12 +30,12 @@ cd "$DOTFILES_DIR"
 echo "Available branches:"
 git branch -a | grep remotes | grep -v HEAD | grep -v master | sed 's/.*\///'
 echo "Enter the branch you want to use (default is master):"
-read BRANCH
-if [ -z "$BRANCH" ]; then
-    BRANCH="master"
+read BRANCH_U
+if [ -z "$BRANCH_U" ]; then
+    BRANCH_U="master"
 fi
-echo "Switching to branch $BRANCH..."
-git checkout $BRANCH
+echo "Switching to branch $BRANCH_U..."
+git checkout $BRANCH_U
 
 ./setup-zsh.sh # Setup zsh before stowing
 
