@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+case $BLOCK_BUTTON in
+	1) spot-cli pomodoro start -d 60 -b 10 ;;
+	2) spot-cli pomodoro status ;;
+	3) spot-cli session status ;;
+esac
