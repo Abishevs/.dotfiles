@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Default settings
+OUTPUT_DIR="$HOME/videos"        # Default output directory
+FILENAME="screen_recording"       # Default file name
+FPS=30                           # Default frame rate
+RESOLUTION="1920x1080"           # Default resolution
+EXT="mp4"                        # Default file format (mp4 or mkv)
+
+# Usage info
+usage() {
+    echo "Usage: $0 [-d OUTPUT_DIR] [-f FILENAME] [-r FPS] [-s RESOLUTION] [-e EXTENSION]"
+    echo "  -d OUTPUT_DIR   Directory to save the file (default: $HOME/Videos)"
+    echo "  -f FILENAME     Name of the output file (default: screen_recording)"
+    echo "  -r FPS          Frame rate for recording (default: 30)"
+    echo "  -s RESOLUTION   Screen resolution to record (default: 1920x1080)"
+    echo "  -e EXTENSION    File extension, either mp4 or mkv (default: mp4)"
+    exit 1
+}
+
+# Parse command line options
+while getopts ":d:f:r:s:e:h" opt; do
+    case $opt in
+        d) OUTPUT_DIR="$OPTARG" ;;
+        f) FILENAME="$OPTARG" ;;
+        r) FPS="$OPTARG" ;;
+        s) RESOLUTION="$OPTARG" ;;
+        e) EXT="$OPTARG" ;;
+        h) usage ;;
+        \?) echo "Invalid option: -$OPTARG" >&2; usage ;;
+        :) echo "Option -$OPTARG requires an argument." >&2; usage ;;
+    esac
+done
+
+# Validate file extension
+if [[ "$EXT" != "mp4" && "$EXT" != "mkv" ]]; then
+    echo "Invalid file extension. Use either 'mp4' or 'mkv'."
+    exit 1
+fi
+
+# Create the output directory if it doesn't exist
+mkdir -p "$OUTPUT_DIR"
+
+# Set the output file path
+OUTPUT_FILE="${OUTPUT_DIR}/${FILENAME}_$(date +'%Y-%m-%d_%H-%M-%S').${EXT}"
+
+# Start screen recording
+echo "Recording screen at $FPS FPS with resolution $RESOLUTION, saving to $OUTPUT_FILE"
+ffmpeg -video_size "$RESOLUTION" -framerate "$FPS" -f x11grab -i :0.0 "$OUTPUT_FILE"
+

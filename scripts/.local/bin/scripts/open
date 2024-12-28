@@ -1,0 +1,23 @@
+#!/bin/bash
+
+case "$1" in
+    *.mp3|*.wav|*.flac)
+        mpv "$1"
+        ;;
+    *.mp4|*.mkv|*.avi)
+        mpv "$1"
+        ;;
+    *.jpg|*.jpeg|*.png|*.gif)
+        sxiv "$1"
+        ;;
+    *.pdf)
+        zathura "$1"
+        ;;
+    *.epub)
+        zathura "$1"
+        ;;
+    *)
+        echo "File type not supported."
+        ;;
+esac
+

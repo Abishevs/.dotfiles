@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Get the current layout
+current_layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+
+# Toggle between Swedish and US layouts
+if [ "$current_layout" = "se" ]; then
+    setxkbmap us
+    echo "US"
+else
+    setxkbmap se
+    echo "SWE"
+fi
+
+pkill -RTMIN+12 dwmblocks
+

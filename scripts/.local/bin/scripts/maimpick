@@ -1,0 +1,111 @@
+#!/bin/sh
+
+# Credit to Luke Smith https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/maimpick
+# Made it more readble
+# This is bound to Shift+PrintScreen by default, requires maim. It lets you
+# choose the kind of screenshot to take, including copying the image or even
+# highlighting an area to copy. 
+#!/bin/bash
+
+# Variables
+output="$(date '+%y%m%d-%H%M-%S').png"
+xclip_cmd="xclip -sel clip -t image/png"
+ocr_cmd="xclip -sel clip"
+
+# Functions
+take_screenshot() {
+    maim -u -s "$1"
+}
+
+take_window_screenshot() {
+    maim -B -q -d 0.2 -i "$(xdotool getactivewindow)" "$1"
+}
+
+take_full_screenshot() {
+    maim -q -d 0.2 "$1"
+}
+
+copy_to_clipboard() {
+    maim -u -s | ${xclip_cmd}
+}
+
+copy_window_to_clipboard() {
+    maim -q -d 0.2 -i "$(xdotool getactivewindow)" | ${xclip_cmd}
+}
+
+copy_full_to_clipboard() {
+    maim -q -d 0.2 | ${xclip_cmd}
+}
+
+perform_ocr() {
+    local lang="$1"
+    tmpfile=$(mktemp /tmp/ocr-XXXXXX.png)
+    take_screenshot "$tmpfile"
+    tesseract "$tmpfile" - -l "$lang" | ${ocr_cmd}
+    rm "$tmpfile"
+}
+
+# User selection
+selection=$(printf "a selected area\ncurrent window\nfull screen\na selected area (copy)\ncurrent window (copy)\nfull screen (copy)\ncopy selected image to text (ENG)\ncopy selected image to text (SWE)" | dmenu -l 8 -i -p "Screenshot which area?")
+
+# Actions based on selection
+case "$selection" in
+    "a selected area") take_screenshot "pic-selected-${output}" ;;
+    "current window") take_window_screenshot "pic-window-${output}" ;;
+    "full screen") take_full_screenshot "pic-full-${output}" ;;
+    "a selected area (copy)") copy_to_clipboard ;;
+    "current window (copy)") copy_window_to_clipboard ;;
+    "full screen (copy)") copy_full_to_clipboard ;;
+    "copy selected image to text (ENG)") perform_ocr "eng" ;;
+    "copy selected image to text (SWE)") perform_ocr "swe" ;;
+esac
+
+# Variables
+output="$(date '+%y%m%d-%H%M-%S').png"
+xclip_cmd="xclip -sel clip -t image/png"
+ocr_cmd="xclip -sel clip"
+
+take_screenshot() {
+    maim -u -s "$1"
+}
+
+take_window_screenshot() {
+    maim -B -q -d 0.2 -i "$(xdotool getactivewindow)" "$1"
+}
+
+take_full_screenshot() {
+    maim -q -d 0.2 "$1"
+}
+
+copy_to_clipboard() {
+    maim -u -s | ${xclip_cmd}
+}
+
+copy_window_to_clipboard() {
+    maim -q -d 0.2 -i "$(xdotool getactivewindow)" | ${xclip_cmd}
+}
+
+copy_full_to_clipboard() {
+    maim -q -d 0.2 | ${xclip_cmd}
+}
+
+perform_ocr() {
+    local lang="$1"
+    tmpfile=$(mktemp /tmp/ocr-XXXXXX.png)
+    take_screenshot "$tmpfile"
+    tesseract "$tmpfile" - -l "$lang" | ${ocr_cmd}
+    rm "$tmpfile"
+}
+
+selection=$(printf "a selected area\ncurrent window\nfull screen\na selected area (copy)\ncurrent window (copy)\nfull screen (copy)\ncopy selected image to text (ENG)\ncopy selected image to text (SWE)" | dmenu -l 8 -i -p "Screenshot which area?")
+
+case "$selection" in
+    "a selected area") take_screenshot "pic-selected-${output}" ;;
+    "current window") take_window_screenshot "pic-window-${output}" ;;
+    "full screen") take_full_screenshot "pic-full-${output}" ;;
+    "a selected area (copy)") copy_to_clipboard ;;
+    "current window (copy)") copy_window_to_clipboard ;;
+    "full screen (copy)") copy_full_to_clipboard ;;
+    "copy selected image to text (ENG)") perform_ocr "eng" ;;
+    "copy selected image to text (SWE)") perform_ocr "swe" ;;
+esac

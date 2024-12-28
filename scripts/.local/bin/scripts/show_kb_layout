@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Get current layout
+current_layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+
+case $BLOCK_BUTTON in 
+	1) toggle_kb_layout ;;
+
+esac
+
+# Print layout in uppercase
+echo "${current_layout^^}"
