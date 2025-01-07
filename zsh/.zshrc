@@ -16,7 +16,7 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 
 for dir in $HOME/.local/bin/*; do
   if [ -d "$dir" ]; then
@@ -24,7 +24,8 @@ for dir in $HOME/.local/bin/*; do
   fi
 done
 
-export PATH="/usr/share:$PATH"
+export PATH
+# ="/usr/share:$PATH"
 
 vimf() {
     local selected_file
@@ -39,7 +40,6 @@ vimf() {
             return 1  # Exit the function with an error status
         fi
     fi
-git@github.com:Abishevs/poker_calc.git
     # Use find to list files in the specified folder, pipe to fzf for selection
     selected_file=$(find "$folder" -type f | fzf)
 
@@ -54,7 +54,7 @@ git@github.com:Abishevs/poker_calc.git
 buildrun() {
     if [ $# -lt 1 ]; then
         echo "Usage: buildrun <program_name> [source_files...]"
-        return 1git@github.com:Abishevs/poker_calc.git
+        return 1
     fi
 
     local prog_name="$1"
@@ -90,11 +90,8 @@ lfcd () {
 
 
 alias vim="nvim"
-# alias pact="pact-cli"
 alias spot="spot-cli"
 alias ta="tmux a"
-# alias pretty="bat"
-# alias bat="acpi"
 alias py="python3"
 alias fzf="fzf | xargs -r nvim"
 alias lfd="lfcd"
