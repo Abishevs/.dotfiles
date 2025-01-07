@@ -1,9 +1,10 @@
 [submodule "nvim"]
 	path = nvim/.config/nvim
 	url = https://github.com/Abishevs/nvim.git 
-[submodule "newsboat/.newsboat"]
-	path = newsboat/.newsboat
+[submodule "newsboat/.config/newsboat"]
+	path = newsboat/.config/newsboat
 	url = git@github.com:Abishevs/.newsboat.git
+	branch = master
 [submodule "obsidian/.obsidian/second-brain"]
 	path = obsidian/.obsidian/second-brain
 	url = git@github.com:Abishevs/second-brain.git

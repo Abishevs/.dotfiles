@@ -5,6 +5,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=nvim
 export TERMINAL=st
+export BROWSER=brave
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -14,6 +15,8 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PATH="$HOME/.local/bin:$PATH"
 
 for dir in $HOME/.local/bin/*; do
   if [ -d "$dir" ]; then
@@ -36,7 +39,7 @@ vimf() {
             return 1  # Exit the function with an error status
         fi
     fi
-
+git@github.com:Abishevs/poker_calc.git
     # Use find to list files in the specified folder, pipe to fzf for selection
     selected_file=$(find "$folder" -type f | fzf)
 
@@ -51,7 +54,7 @@ vimf() {
 buildrun() {
     if [ $# -lt 1 ]; then
         echo "Usage: buildrun <program_name> [source_files...]"
-        return 1
+        return 1git@github.com:Abishevs/poker_calc.git
     fi
 
     local prog_name="$1"
@@ -74,7 +77,7 @@ buildrun() {
 
 lfcd () {
     tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
+    lfub -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
@@ -87,11 +90,12 @@ lfcd () {
 
 
 alias vim="nvim"
-alias pact="pact-cli"
+# alias pact="pact-cli"
 alias spot="spot-cli"
 alias ta="tmux a"
 # alias pretty="bat"
 # alias bat="acpi"
 alias py="python3"
 alias fzf="fzf | xargs -r nvim"
-alias lf="lfcd"
+alias lfd="lfcd"
+alias lf="lfub" 
