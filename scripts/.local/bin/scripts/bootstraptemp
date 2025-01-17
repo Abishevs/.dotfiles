@@ -1,0 +1,60 @@
+#!/bin/bash
+
+SCRIPT_NAME="bootstraptemp"
+
+# Check if enough arguments are provided or if the optional flag is present
+if [ "$#" -lt 1 ]; then
+    echo "Replace {{ project_name }} in templates with the actual name"
+    echo "Usage: $SCRIPT_NAME <project_name> [<file_or_directory> | -m]"
+    exit 1
+fi
+
+PROJECT_NAME=$1
+TARGET=$2
+
+# If the optional flag `-m` is provided
+if [ "$TARGET" == "-m" ]; then
+    # Hardcode the target to README.md
+    TARGET="README.md"
+    if [ ! -f "$TARGET" ]; then
+        echo "Error: $TARGET does not exist."
+        exit 1
+    fi
+
+    # Process the hardcoded file
+    temp_file=$(mktemp)
+    awk -v project_name="$PROJECT_NAME" '{
+        gsub(/\{\{ project_name \}\}/, project_name)
+        print
+    }' "$TARGET" > "$temp_file"
+    mv "$temp_file" "$TARGET"
+    echo "Processed file: $TARGET"
+
+# Check if the target is a file
+elif [ -f "$TARGET" ]; then
+    # Process a single file
+    temp_file=$(mktemp)
+    awk -v project_name="$PROJECT_NAME" '{
+        gsub(/\{\{ project_name \}\}/, project_name)
+        print
+    }' "$TARGET" > "$temp_file"
+    mv "$temp_file" "$TARGET"
+    echo "Processed file: $TARGET"
+
+# Check if the target is a directory
+elif [ -d "$TARGET" ]; then
+    # Process all files in the directory recursively
+    find "$TARGET" -type f | while read -r file; do
+        temp_file=$(mktemp)
+        awk -v project_name="$PROJECT_NAME" '{
+            gsub(/\{\{ project_name \}\}/, project_name)
+            print
+        }' "$file" > "$temp_file"
+        mv "$temp_file" "$file"
+        echo "Processed file: $file"
+    done
+else
+    echo "Error: $TARGET is neither a file nor a directory."
+    exit 1
+fi
+
