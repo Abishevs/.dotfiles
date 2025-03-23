@@ -6,7 +6,6 @@ udiskie &
 
 # Start Def applications
 
-$TERMINAL &
 $BROWSER &
 
 

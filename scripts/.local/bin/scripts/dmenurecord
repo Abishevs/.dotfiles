@@ -27,6 +27,8 @@ killrecording() {
 	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
 	}
 
+ 	# -c:v h264 \
+	# -crf 0 -preset ultrafast -c:a aac \
 screencast() { \
 	ffmpeg -y \
 	-f x11grab \
@@ -36,19 +38,19 @@ screencast() { \
 	-r 24 \
 	-use_wallclock_as_timestamps 1 \
 	-f alsa -thread_queue_size 1024 -i default \
- 	-c:v h264 \
-	-crf 0 -preset ultrafast -c:a aac \
+	-c:v libx264 -preset fast -crf 23 -r 30 \
 	"$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
 	echo $! > /tmp/recordingpid
 	updateicon "⏺️🎙️"
        	}
 
+ 	# -c:v libx264 -qp 0 -r 30 \
 video() { ffmpeg \
 	-f x11grab \
 	-framerate 30 \
 	-s "$(getdim)" \
 	-i "$DISPLAY" \
- 	-c:v libx264 -qp 0 -r 30 \
+	-c:v libx264 -preset fast -crf 23 -r 30 \
 	"$HOME/video-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "⏺️"
