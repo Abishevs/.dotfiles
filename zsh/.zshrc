@@ -7,7 +7,8 @@ export EDITOR=nvim
 export TERMINAL=st
 export BROWSER=brave
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting spot-cli)
 
@@ -95,6 +96,9 @@ lfcd () {
     fi
 }
 
+free_space () {
+        du -ah  $1 | sort -rh | head -n 10
+}
 
 alias intoclip='xclip -i -selection "clipboard"'
 
