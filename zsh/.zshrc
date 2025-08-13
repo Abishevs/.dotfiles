@@ -113,3 +113,5 @@ alias get_idf='. $HOME/esp/esp-idf/export.sh'
 alias pwgen='bw generate -c --passphrase --includeNumber  --words 3 --separator _ | xclip -i -selection "clipboard"'
 alias webcam="mpv --no-cache --vf=hflip  /dev/video0"
 alias get_emsdk='source $HOME/dev/toolchains/emsdk/emsdk_env.sh'
+export PATH="/home/frap/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/frap/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
