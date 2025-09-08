@@ -1,8 +1,8 @@
 GIT_ROOT := $(shell git rev-parse --show-toplevel 2>/dev/null)
 DOTFILES_DIR := $(GIT_ROOT)/dotfiles	
 STOW_TARGET := $(HOME)
-PACMAN_PKGS := $(DOTFILES_DIR)/pkglist_repo.txt
-AUR_PKGS    := $(DOTFILES_DIR)/pkglist_aur.txt
+PACMAN_PKGS := $(GIT_ROOT)/pkglist_repo.txt
+AUR_PKGS    := $(GIT_ROOT)/pkglist_aur.txt
 
 .PHONY: help pkg_save stow unstow
 
