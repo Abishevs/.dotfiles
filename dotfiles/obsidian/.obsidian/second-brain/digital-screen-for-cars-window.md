@@ -1,0 +1,1 @@
+You know an phone controlable sticky led screen that u can put on back windshield :D then have funny names and shit poping up there. It should run of 12v. 

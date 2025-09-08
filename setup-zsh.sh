@@ -2,10 +2,10 @@
 
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 
-if ! command -v zsh > /dev/null 2>&1; then
+if [ ! command -v zsh > /dev/null 2>&1 ]; then
     echo "Zsh is not installed. Installing Zsh..."
     sudo pacman -Syu zsh --noconfirm
-
+fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Oh My Zsh is not installed. Installing Oh My Zsh..."
