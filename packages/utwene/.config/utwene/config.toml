@@ -1,0 +1,7 @@
+[newsboat]
+db = "~/.config/newsboat/cache.db"
+urls = "~/.config/newsboat/urls"
+tag = "ML"
+
+[tv]
+paths = ["~/series",]
