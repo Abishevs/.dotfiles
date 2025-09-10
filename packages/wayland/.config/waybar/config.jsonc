@@ -14,6 +14,7 @@
         "hyprland/window"
     ],
     "modules-right": [
+        "custom/utwene",
 	"tray",
         "network",
         "bluetooth",
@@ -38,6 +39,11 @@
     },
     "hyprland/window": {
         "format": "{}"
+    },
+    "custom/utwene": {
+            "format": "UTWENE",
+            "on-click": "~/.local/bin/utwene --tv", // Run random series
+	    "on-click-right": "~/.local/bin/utwene", // Try newsboat YT videos first
     },
 
     "tray": {

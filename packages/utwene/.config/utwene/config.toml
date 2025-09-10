@@ -1,5 +1,5 @@
 [newsboat]
-db = "~/.config/newsboat/cache.db"
+db = "~/.local/share/newsboat/cache.db"
 urls = "~/.config/newsboat/urls"
 tag = "ML"
 

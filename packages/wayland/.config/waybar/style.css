@@ -48,6 +48,7 @@ tooltip {
     border-radius: 5px;
 }
 
+#custom-utwene,
 #custom-power_profile,
 #custom-weather,
 #custom-moon,
@@ -159,6 +160,7 @@ tooltip {
 #battery.critical {
     color: #F00;
 } 
+#custom-utwene,
 #custom-moon {
     border-radius: 0px 10px 10px 0px;
     border-right: 0px;

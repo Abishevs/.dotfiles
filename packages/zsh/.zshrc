@@ -100,7 +100,7 @@ free_space () {
 }
 
 alias intoclip='xclip -i -selection "clipboard"'
-
+alias rrwaybar='pkill waybar && hyprctl dispatch -- exec waybar'
 alias vim="nvim"
 alias spot="spot-cli"
 # alias pact="pact-cli"
