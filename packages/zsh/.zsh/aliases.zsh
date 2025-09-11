@@ -1,3 +1,4 @@
+alias rm='rm -i'
 alias intoclip='xclip -i -selection "clipboard"'
 alias rrwaybar='pkill waybar && hyprctl dispatch -- exec waybar'
 alias vim="nvim"
